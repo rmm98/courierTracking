@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Package Update</title>
+    <style>
+        #pad,#pad1{
+            padding: 0 2vw;
+        }
+
+        #mar {
+            margin-left: 3.5vw;
+        }
+
+        #estimated_time1 {
+            margin-bottom: 1.5vw;
+        }
+
+        #pad1 {
+            padding: 0 2vw;
+        }
+    </style>
+</head>
+
+<body >
+    
+    <nav class="nav-wrapper indigo">
+        <div class="container">
+
+            <a href="#" class="brand-logo">L-Courier</a>
+
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <ul class="sidenav" id="mobile-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <form action="/fetch" method="post" id="idSubmit">
+            <div class="input-field">
+                <i class="material-icons prefix">content_paste</i>
+                <input type="text" id="orderId" name="orderId">
+                <label for="orderId">Order-ID</label>
+            </div>
+            <div class="input-field">
+                <button class="btn-small" id="mar">Confirm</button>
+                <a href="/qr" class="btn-small" id="pad1">QR</a>
+                <a href="/" class="btn-small" id="pad">Back</a>    
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <% include previousInfo.ejs %>
+            <% include updateInfo.ejs %>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/public/axios.min.js"></script>
+
+    <script>
+        // const encodeForm = (data) => {
+        //     return Object.keys(data)
+        //         .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        //         .join('&');
+        // }
+
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+
+            $('#curloc').on('click',()=>{
+
+                    var name = "branch="
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    var x;
+                    for(var i = 0; i <ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            x = c.substring(name.length, c.length);
+                            console.log(x);
+                            break;
+                        }
+                    }
+
+                    if(x){
+                        document.getElementById("current_location2").value=x;
+                    }
+
+                    // navigator.geolocation.getCurrentPosition((pos)=>{
+                    // console.log(pos.coords.latitude,pos.coords.longitude);
+                    // });
+
+                    // axios.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBxvLpGFYYEzrcHFexO-tnaZuOKpD49NcI")
+                    // .then((res)=>{
+                    //     console.log(res.data);
+                    // });
+
+                    // axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+pos.coords.latitude+","+pos.coords.longitude+"&key=AIzaSyBxvLpGFYYEzrcHFexO-tnaZuOKpD49NcI")
+                    // .then((res)=>{
+                    // console.log(res.data);
+                    // });   
+            });
+
+            // $('#idSubmit').on('submit',(e)=>{
+            //     e.preventDefault();
+            //     let id = {
+            //         orderId:$("#orderId").val()
+            //     };
+            //     axios.post("/fetch",encodeForm(id),{headers:{'Accept':'appliation/json'}})
+            //     .then((res)=>{
+            //         $("#source").val(res.data.details.source);
+            //     })
+            // })
+        })
+    </script>
+
+    <script>
+        if("<%=cookie_value%>"){
+            document.cookie = "branch=<%= cookie_value%>;path=/";
+            console.log(document.cookie);
+        }
+    </script>
+</body>
+
+</html>

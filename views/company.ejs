@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Lightning Courier</title>
+
+    <style>
+    #cards{
+        margin-top: 4vw;
+    }
+    </style>
+</head>
+
+<body>
+    
+    <nav class="nav-wrapper indigo">
+        <div class="container">
+
+            <a href="#" class="brand-logo">L-Courier</a>
+
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul> 
+
+            <ul class="sidenav" id="mobile-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container" id="cards">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/public/img/track.png" alt="" class="responsive">
+                    </div>
+                    <div class="card-action">
+                        <a href="/map">Track Shipment</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/public/img/login.png" alt="" class="responsive">
+                        </div>
+                        <div class="card-action">
+                            <a href="/login">Admin Login</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/public/img/register.png" alt="" class="responsive">
+                        </div>
+                        <div class="card-action">
+                            <a href="/register">Register User</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/public/img/update.png" alt="" class="responsive">
+                        </div>
+                        <div class="card-action">
+                            <a href="/statusUpdate">Status Updates</a>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        })
+    </script>
+</body>
+</html>

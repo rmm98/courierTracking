@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Geo Track</title>
+    <style> 
+    .container{
+        margin:5vw auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="container center">
+
+        <form id="orderIdForm">
+            <div class="input-field">
+                <i class="material-icons prefix">input</i>
+                <input type="text" id="orderId">
+                <label for="orderId">OrderID</label>
+            </div>
+            <div class="input-field">
+                <button class="btn-small right">Submit</button>
+            </div>
+        </form>
+
+        <div>
+            <iframe width="80%" height="500" style = "margin: 10px 0 20px 0;" id="gmap_canvas" src="https://maps.google.com/maps?api=1&q=&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" crossorigin="anonymous" scrolling="no" marginheight="0" marginwidth="0"></iframe>		
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/public/axios.min.js"></script>
+    <script>
+            $(document).ready(()=>{
+                $("#orderIdForm").on("submit",(e)=>{
+                    e.preventDefault();
+                    var orderid = $("#orderId").val();
+                    axios.get("/tracking/"+orderid).then((res)=>{
+                        console.log(res.data);
+                        if(res.data === "Invalid"){
+                            M.toast({html: 'Invalid'});
+                        }else{
+
+                            var cur_loc = res.data.current_location;
+                            var dest = res.data.destination;
+                            var map = document.getElementById('gmap_canvas');			
+                            // var main_query="https://maps.google.com/maps?api=1&q=";
+                            // var ending = "&t=&z=13&ie=UTF8&iwloc=&output=embed";				
+                            // let query = main_query + place + ending;
+                            // map.src = query;
+
+                            let query = "http://maps.google.com/maps?saddr="
+                            + (cur_loc).split(" ").join("+")
+                            + "&daddr="
+                            + (dest).split(" ").join("+") + "&output=embed";
+                            console.log(query);
+                            map.src = query;
+                        }
+                    });
+                });
+            });
+	</script>
+</body>
+</html>

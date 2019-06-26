@@ -1,0 +1,128 @@
+<div class="col s12 l6">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Update Info</span>
+            <form action="/confirmUpdate" method="post">
+                
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input type="text" id="clientName2" name="clientName" value=<%= details.clientName%> disabled>
+                    <label for="clientName2">Client Name</label>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input type="text" id="clientName2" name="clientName" value="">
+                    <label for="clientName2">Client Name</label>
+                </div>
+                <%}
+                        %>
+
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" id="source2" name="source" value=<%= details.source%> disabled>
+                    <label for="source2">Source</label>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" id="source2" name="source" value="">
+                    <label for="source2">Source</label>
+                </div>
+                <%}
+                        %>
+
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" id="destination2" name="destination" value=<%= details.destination%>>
+                    <label for="destination2">Destination</label>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" id="destination2" name="destination" value="">
+                    <label for="destination2">Destination</label>
+                </div>
+                <%}
+                        %>
+
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">location_on</i>
+                    <input type="text" id="current_location2" name="current_location" value=<%= details.current_location%>>
+                    <label for="current_location2">Current Location</label>
+                    <a id="curloc" class="small-btn right">
+                        <i class="material-icons">cloud_upload</i>
+                    </a>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">location_on</i>
+                    <input type="text" id="current_location2" name="current_location" value="">
+                    <label for="current_location2">Current Location</label>
+                    <a id="curloc" class="small-btn right">
+                        <i class="material-icons">cloud_upload</i>
+                    </a>
+                </div>
+                <%}
+                        %>
+
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">priority_high</i>
+                    <input type="text" id="priority2" name="priority" value=<%= details.priority%>>
+                    <label for="priority2">Priority</label>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">priority_high</i>
+                    <input type="text" id="priority2" name="priority" value="">
+                    <label for="priority2">Priority</label>
+                </div>
+                <%}
+                        %>
+
+                <%
+                            if(details){%>
+                <div class="input-field">
+                    <i class="material-icons prefix">timer</i>
+                    <input type="text" id="estimated_time2" name="estimated_time1" value=<%= details.estimated_time%>>
+                    <label for="estimated_time2">Estimated Time</label>
+                </div>
+                <%}else{%>
+                <div class="input-field">
+                    <i class="material-icons prefix">timer</i>
+                    <input type="text" id="estimated_time2" name="estimated_time1" value="">
+                    <label for="estimated_time2">Estimated Time</label>
+                </div>
+                <%}
+                        %>
+
+                    <%
+                    if(details){%>
+                        
+                            <input type="text" id="oid" name="oid" style="display:none" value=<%= details.orderId%> >
+                            
+                    <%}else{%>
+                        
+                            <input type="text" id="oid" name="oid" style="display:none" value="">
+                            
+                    <%}
+                    %>
+                <div class="input-field">
+                    <button class="btn-small">Confirm</button>
+                    <a href="/" class="btn-small" id="pad1">Back</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

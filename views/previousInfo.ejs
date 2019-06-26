@@ -1,0 +1,108 @@
+        <div class="col s12 l6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Previous Info</span>
+                    <form action="">
+                        
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input type="text" id="clientName1" value=<%= details.clientName%> disabled>
+                            <label for="clientName1">Client Name</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input type="text" id="clientName1" value="">
+                            <label for="clientName1">Client Name</label>
+                        </div>
+                        <%}
+                            %>
+
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">edit_location</i>
+                            <input type="text" id="source1" value=<%= details.source%> disabled>
+                            <label for="source1">Source</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">edit_location</i>
+                            <input type="text" id="source1" value="">
+                            <label for="source1">Source</label>
+                        </div>
+                        <%}
+                            %>
+
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">edit_location</i>
+                            <input type="text" id="destination1" disabled value=<%= details.destination%>>
+                            <label for="destination1">Destination</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">edit_location</i>
+                            <input type="text" id="destination1" value="">
+                            <label for="destination1">Destination</label>
+                        </div>
+                        <%}
+                            %>
+
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">location_on</i>
+                            <input type="text" id="current_location1" disabled value=<%= details.current_location%>>
+                            <label for="current_location1">Current Location</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">location_on</i>
+                            <input type="text" id="current_location1" value="">
+                            <label for="current_location1">Current Location</label>
+                        </div>
+                        <%}
+                            %>
+
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">priority_high</i>
+                            <input type="text" id="priority1" disabled value=<%= details.priority%>>
+                            <label for="priority1">Priority</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">priority_high</i>
+                            <input type="text" id="priority1" value="">
+                            <label for="priority1">Priority</label>
+                        </div>
+                        <%}
+                            %>
+
+                        <%
+                                if(details){%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">timer</i>
+                            <input type="text" id="estimated_time1" disabled value=<%= details.estimated_time%>>
+                            <label for="estimated_time1">Estimated Time</label>
+                        </div>
+                        <%}else{%>
+                        <div class="input-field">
+                            <i class="material-icons prefix">timer</i>
+                            <input type="text" id="estimated_time1" value="">
+                            <label for="estimated_time1">Estimated Time</label>
+                        </div>
+                        <%}
+                            %>
+                        <div class="input-field">
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

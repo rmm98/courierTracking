@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Pdf Generation</title>
+</head>
+<body>
+    <div class="container">
+        <form class="form" id="bill">
+             <div class="row">
+                 <div class="col s12 m6">
+                     <h4><%=details.clientName%></h4>
+                     <h4><%=details.source%></h4>
+                     <h4><%=details.destination%></h4>
+                     <h4><%=details.priority%></h4>
+                 </div>
+                 <div class="col s12 m6">
+                    <img src="<%=details.qrcode%>" alt="">
+                 </div>
+             </div>
+        </form>
+        <button class = "btn waves-effect waves-light lighten-1" id="create_pdf" value="Generate PDF">Generate PDF</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/public/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>  
+            (function () {  
+                var  
+                 form = $('.form'),  
+                 cache_width = form.width(),  
+                 a4 = [595.28, 841.89]; // for a4 size paper width and height  
+          
+                $('#create_pdf').on('click', function () {  
+                    $('body').scrollTop(0);  
+                    createPDF();  
+                });  
+                //create pdf  
+                function createPDF() {  
+                    getCanvas().then(function (canvas) {  
+                        var  
+                         img = canvas.toDataURL("image/png"),  
+                         doc = new jsPDF({  
+                             unit: 'px',  
+                             format: 'a4'  
+                         });  
+                        doc.addImage(img, 'JPEG', 40, 40);  
+                        doc.save("<%= details.orderId %>" +  '.pdf');  
+                        form.width(cache_width);  
+                    });  
+                }  
+          
+                // create canvas object  
+                function getCanvas() {  
+                    form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');  
+                    return html2canvas(form, {  
+                        imageTimeout: 2000,  
+                        removeContainer: true  
+                    });  
+                }  
+          
+            }());  
+        </script>  
+        <script>  
+            /* 
+         * jQuery helper plugin for examples and tests 
+         */  
+            (function ($) {  
+                $.fn.html2canvas = function (options) {  
+                    var date = new Date(),  
+                    $message = null,  
+                    timeoutTimer = false,  
+                    timer = date.getTime();  
+                    html2canvas.logging = options && options.logging;  
+                    html2canvas.Preload(this[0], $.extend({  
+                        complete: function (images) {  
+                            var queue = html2canvas.Parse(this[0], images, options),  
+                            $canvas = $(html2canvas.Renderer(queue, options)),  
+                            finishTime = new Date();  
+          
+                            $canvas.css({ position: 'absolute', left: 0, top: 0 }).appendTo(document.body);  
+                            $canvas.siblings().toggle();  
+          
+                            $(window).click(function () {  
+                                if (!$canvas.is(':visible')) {  
+                                    $canvas.toggle().siblings().toggle();  
+                                    throwMessage("Canvas Render visible");  
+                                } else {  
+                                    $canvas.siblings().toggle();  
+                                    $canvas.toggle();  
+                                    throwMessage("Canvas Render hidden");  
+                                }  
+                            });  
+                            throwMessage('Screenshot created in ' + ((finishTime.getTime() - timer) / 1000) + " seconds<br />", 4000);  
+                        }  
+                    }, options));  
+          
+                    function throwMessage(msg, duration) {  
+                        window.clearTimeout(timeoutTimer);  
+                        timeoutTimer = window.setTimeout(function () {  
+                            $message.fadeOut(function () {  
+                                $message.remove();  
+                            });  
+                        }, duration || 2000);  
+                        if ($message)  
+                            $message.remove();  
+                        $message = $('<div ></div>').html(msg).css({  
+                            margin: 0,  
+                            padding: 10,  
+                            background: "#0922c4",  
+                            opacity: 0.7,  
+                            position: "fixed",  
+                            top: 10,  
+                            right: 10,  
+                            fontFamily: 'Tahoma',  
+                            color: '#fff',  
+                            fontSize: 12,  
+                            borderRadius: 12,  
+                            width: 'auto',  
+                            height: 'auto',  
+                            textAlign: 'center',  
+                            textDecoration: 'none'  
+                        }).hide().fadeIn().appendTo('body');  
+                    }  
+                };  
+            })(jQuery);  
+          
+        </script> 
+</body>
+</html>
